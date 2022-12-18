@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 // import { URL } from "../constants/constants"
 import { getPosts } from "../api/getRequests";
-
+import Postcard from "./Postcard";
 //URL.baseURL
 
 
@@ -24,16 +24,17 @@ function Posts() {
             {
                 posts.map(({ location, title, description, price, _id }) => {
                     return (
-                        <div key={_id}>
-                            <h3>{title}</h3>
-                            <span>Price: {price}</span>
-                            <br />
-                            <span>Description: {description}</span>
-                            <br />
-                            <span>Location: {location}</span>
-                        </div>
-                    )
 
+                        <Postcard
+                            location={location}
+                            title={title}
+                            description={description}
+                            price={price}
+                            _id={_id}
+
+                        />
+
+                    )
                 }
                 )}
 

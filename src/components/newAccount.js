@@ -18,50 +18,26 @@ function NewAccount() {
                 (event) => {
                     event.preventDefault();
                     createAccount({ username, password })
-                    // try {
-                    //     const response = await fetch(`${BASEURL}/users/register`,
-                    //         {
-                    //             method: "POST",
-                    //             headers: {
-                    //                 'Content-Type': 'application/json'
-                    //             },
-                    //             body: JSON.stringify({
-                    //                 user: {
-                    //                     username,
-                    //                     password,
-                    //                 }
-                    //             })
-                    //         });
-
-                    //     const replyToken = response.data.data.token;
-                    //     console.log(replyToken);
-                    // } catch (error) {
-                    //     console.log('Failed to Register')
-                    //     console.errror(error)
-                    // }
-
-                    //make API Call to register new user, get and store token in local storage...
-
                 }}
             >
-                <label for="username">Username</label>
+                <label for="createUsername">Username</label>
                 <input
                     type="text"
                     placeholder="Enter Username"
-                    id="username"
+                    id="createUsername"
                     value={username}
                     onChange={setTargetValue(setUsername)}
                     required />
 
-                <label for="password">Password</label>
+                <label for="createPassword">Password</label>
                 <input type="password"
                     placeholder="Enter Password"
-                    id="password"
+                    id="createPassword"
                     value={password}
                     onChange={setTargetValue(setPassword)}
                     required />
 
-                <button>Log In</button>
+                <button>Create Account</button>
             </form>
         </>
     )
