@@ -68,12 +68,12 @@ export async function newPost(props) {
     }
 }
 
-export async function deletePost(props) {
-    const token = props.token;
-    const postID = props.postID;
+export async function deletePost({ token, _id }) {
+    // const token = props.token;
+    // const postID = props._id;
     try {
         const response = await fetch(
-            `${BASEURL}/posts/${postID}`,
+            `${BASEURL}/posts/${_id}`,
             {
                 method: "DELETE",
                 headers: {

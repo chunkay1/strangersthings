@@ -41,6 +41,6 @@ function NewAccount() {
             </form>
         </>
     )
-}
+};
 
 export default NewAccount;

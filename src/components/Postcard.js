@@ -1,9 +1,11 @@
-// import { STORAGE_KEY } from "../api/postsRequests";
+// import { BASEURL } from "../api/accountRequests";
 import { AUTHOR_ID } from "../api/accountRequests";
+import { deletePost, STORAGE_KEY } from "../api/postsRequests";
 
 function Postcard({ _id, title, price, description, location, author, isAuthor }) {
     const userID = localStorage.getItem(`${AUTHOR_ID}`)
     const authID = author._id
+    const token = localStorage.getItem(`${STORAGE_KEY}`)
     return (
         <div key={_id}>
             <h3>{title}</h3>
@@ -21,9 +23,10 @@ function Postcard({ _id, title, price, description, location, author, isAuthor }
                     <span>
                         <button
                             // onClick={deletePost()}
+
                             onClick={
                                 (event) => {
-                                    console.log('This is the delete button')
+                                    deletePost({ _id, token })
                                 }
                             }
                         >Delete</button>
@@ -46,6 +49,6 @@ function Postcard({ _id, title, price, description, location, author, isAuthor }
             }
         </div>
     )
-}
+};
 
 export default Postcard;
