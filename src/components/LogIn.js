@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { logIn } from "../api/getRequests"
+import { logIn } from "../api/accountRequests"
 
 function LogIn() {
     const [username, setUsername] = useState('')
@@ -13,10 +13,11 @@ function LogIn() {
 
     return (
         <>
-            <h1>Log In Page</h1>
+            <h1>Log In</h1>
             <form onSubmit={(event) => {
                 event.preventDefault();
                 logIn({ username, password })
+
             }}
             >
                 <label for="username">Username</label>

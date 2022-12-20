@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { newPost } from "../api/getRequests";
-import { STORAGE_KEY } from "../api/getRequests";
+import { newPost } from "../api/postsRequests";
+import { STORAGE_KEY } from "../api/postsRequests";
 
 function NewPost() {
     const [title, setTitle] = useState('')

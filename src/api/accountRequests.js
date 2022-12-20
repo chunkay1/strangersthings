@@ -1,73 +1,6 @@
 export const BASEURL = 'https://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt'
 export const STORAGE_KEY = 'replyToken';
-
-
-//post related functions
-
-export async function getPosts() {
-    try {
-        const response = await fetch(
-            `${BASEURL}/posts`);
-        const json = await response.json();
-        // console.log(json.data.posts);
-
-        return (
-            json.data.posts
-        )
-    } catch (error) {
-        throw error
-    }
-
-}
-
-export async function newPost(props) {
-    const token = props.token;
-    const body = JSON.stringify({
-        post: {
-            title: props.title,
-            description: props.description,
-            price: props.price,
-            location: props.location,
-            willDeliver: props.willDeliver,
-        }
-    });
-
-    try {
-        const response = await fetch(
-            `${BASEURL}/posts`,
-            {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-                body,
-            }
-        )
-        const json = await response.json();
-        const post = json.data.post;
-        const location = post.location;
-        const id = post._id;
-        const title = post.title;
-        const author = post.author;
-        const isAuthor = post.isAuthor;
-
-        console.log(json);
-        console.log(post);
-        console.log(location);
-        console.log(id);
-        console.log(title);
-        console.log(author);
-        console.log(isAuthor);
-
-    } catch (error) {
-        console.log(error);
-        console.error(error)
-    }
-}
-
-
-//account related functions
+export const AUTHOR_ID = 'authorID';
 
 export async function createAccount(props) {
     const body = JSON.stringify({
@@ -144,11 +77,41 @@ export async function logIn(props) {
         console.log(success);
 
     } catch (error) {
-        console.log('Failed to Register')
+        console.log('Failed to Log In')
         console.error(error)
     }
 
 }
 
+export function logOut() {
+    localStorage.clear();
+}
+
+
+export async function myProfile(props) {
+    const token = props.token;
+    try {
+        const response = await fetch(
+            `${BASEURL}/users/me`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            }
+        )
+        const json = await response.json();
+        const authorID = json.data._id;
+        console.log(authorID)
+        if (authorID) {
+            localStorage.setItem(`${AUTHOR_ID}`, authorID)
+        }
+
+    } catch (error) {
+        console.log('failed to load profile');
+        console.error(error);
+    }
+
+}
 
 

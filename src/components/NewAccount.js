@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createAccount } from "../api/getRequests";
+import { createAccount } from "../api/accountRequests";
 
 function NewAccount() {
     const [username, setUsername] = useState('');

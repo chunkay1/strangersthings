@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-import { STORAGE_KEY } from './api/getRequests';
+import { myProfile, STORAGE_KEY } from './api/accountRequests';
 
-import NewAccount from './components/newAccount';
+import NewAccount from './components/NewAccount';
 import Posts from './components/Posts';
 import NewPost from './components/NewPost';
-// import LogIn from './components/logIn';
+
+// import { logOut } from './api/accountRequests';
+
+import LogIn from './components/LogIn';
 
 
 
@@ -19,7 +22,13 @@ function App() {
     const token = localStorage.getItem(`${STORAGE_KEY}`);
 
     setToken(token)
+
   }, [])
+
+  useEffect(() => {
+    myProfile({ token })
+
+  }, [token])
 
 
   return (
@@ -33,24 +42,37 @@ function App() {
           <li>Profile</li>
         </ul>
 
+        <button
+          onClick={
+            console.log('come back and find out why this is console logging automatically, this is supposed to be the log out button...')
+
+
+
+          }
+        >Log Out</button>
+
       </nav>
 
       <main>
+
+
         {
           (!token)
             ?
-            <NewAccount />
+            <>
+              <NewAccount />
+              <LogIn />
+            </>
             :
             <>
               <NewPost />
               <Posts />
             </>
         }
-        {/* <LogIn /> */}
         {/* <br /> */}
 
       </main>
-    </div>
+    </div >
   );
 }
 

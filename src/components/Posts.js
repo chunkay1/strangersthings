@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 // import { URL } from "../constants/constants"
-import { getPosts } from "../api/getRequests";
+import { getPosts } from "../api/postsRequests";
 import Postcard from "./Postcard";
 //URL.baseURL
 
@@ -14,6 +14,7 @@ function Posts() {
             const posts = await getPosts();
 
             setPosts(posts)
+            console.log(posts);
         }
         getPostsAsync();
     }, [])
@@ -22,8 +23,9 @@ function Posts() {
     return (
         <div>
             {
-                posts.map(({ location, title, description, price, _id }) => {
+                posts.map(({ location, title, description, price, _id, author, isAuthor }) => {
                     return (
+
 
                         <Postcard
                             location={location}
@@ -31,6 +33,8 @@ function Posts() {
                             description={description}
                             price={price}
                             _id={_id}
+                            author={author}
+                            isAuthor={isAuthor}
 
                         />
 
