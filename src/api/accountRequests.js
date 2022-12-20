@@ -103,6 +103,7 @@ export async function myProfile(props) {
         const json = await response.json();
         const authorID = json.data._id;
         console.log(authorID)
+        console.log('second')
         if (authorID) {
             localStorage.setItem(`${AUTHOR_ID}`, authorID)
         }

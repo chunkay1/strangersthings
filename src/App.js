@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     myProfile({ token })
-
+    console.log('first');
   }, [token])
 
 
@@ -43,8 +43,9 @@ function App() {
         </ul>
 
         <button
-          onClick={
+          onClick={(event) => {
             console.log('come back and find out why this is console logging automatically, this is supposed to be the log out button...')
+          }
 
 
 

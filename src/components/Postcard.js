@@ -1,4 +1,4 @@
-import { STORAGE_KEY } from "../api/postsRequests";
+// import { STORAGE_KEY } from "../api/postsRequests";
 import { AUTHOR_ID } from "../api/accountRequests";
 
 function Postcard({ _id, title, price, description, location, author, isAuthor }) {
@@ -20,8 +20,22 @@ function Postcard({ _id, title, price, description, location, author, isAuthor }
                     ?
                     <span>
                         <button
-                        // onClick={deletePost()}
+                            // onClick={deletePost()}
+                            onClick={
+                                (event) => {
+                                    console.log('This is the delete button')
+                                }
+                            }
                         >Delete</button>
+
+                        <button
+                            // onClick={editPost()
+                            onClick={
+                                (event) => {
+                                    console.log('This is the edit button')
+                                }
+                            }
+                        >Edit</button>
                     </span>
 
                     :

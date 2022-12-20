@@ -14,7 +14,7 @@ function Posts() {
             const posts = await getPosts();
 
             setPosts(posts)
-            console.log(posts);
+            // console.log(posts);
         }
         getPostsAsync();
     }, [])
