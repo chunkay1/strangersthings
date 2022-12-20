@@ -1,4 +1,4 @@
-import { AUTHOR_ID } from "./accountRequests";
+// import { AUTHOR_ID } from "./accountRequests";
 export const BASEURL = 'https://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt'
 export const STORAGE_KEY = 'replyToken';
 
@@ -91,94 +91,6 @@ export async function deletePost({ token, _id }) {
     }
 
 }
-
-
-//account related functions
-
-// export async function createAccount(props) {
-//     const body = JSON.stringify({
-//         user: {
-//             username: props.username,
-//             password: props.password,
-//         }
-//     });
-
-//     try {
-//         const response = await fetch(
-//             `${BASEURL}/users/register`,
-//             {
-//                 method: "POST",
-//                 headers: {
-//                     'Content-Type': 'application/json'
-//                 },
-//                 body,
-//             }
-//         )
-//         const json = await response.json();
-//         const replyToken = json.data.token;
-//         const message = json.data.message;
-//         const success = json.data.success;
-
-
-//         if (replyToken) {
-//             localStorage.setItem(`${STORAGE_KEY}`, replyToken)
-//         }
-//         console.log(json)
-//         // console.log(json.data.token)
-//         console.log(replyToken);
-//         console.log(message);
-//         console.log(success);
-
-//     } catch (error) {
-//         console.log('Failed to Register')
-//         console.error(error)
-//     }
-
-// }
-
-// export async function logIn(props) {
-//     const body = JSON.stringify({
-//         user: {
-//             username: props.username,
-//             password: props.password,
-//         }
-//     });
-
-//     try {
-//         const response = await fetch(
-//             `${BASEURL}/users/login`,
-//             {
-//                 method: "POST",
-//                 headers: {
-//                     'Content-Type': 'application/json'
-//                 },
-//                 body,
-//             }
-//         )
-//         const json = await response.json();
-//         const replyToken = json.data.token;
-//         const message = json.data.message;
-//         const success = json.data.success;
-
-
-//         if (replyToken) {
-//             localStorage.setItem(`${STORAGE_KEY}`, replyToken)
-//         }
-//         console.log(json)
-//         console.log(replyToken);
-//         console.log(message);
-//         console.log(success);
-
-//     } catch (error) {
-//         console.log('Failed to Log In')
-//         console.error(error)
-//     }
-
-// }
-
-// export function logOut() {
-//     localStorage.clear();
-// }
 
 
 

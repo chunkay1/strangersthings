@@ -6,7 +6,7 @@ import NewAccount from './components/NewAccount';
 import Posts from './components/Posts';
 import NewPost from './components/NewPost';
 
-// import { logOut } from './api/accountRequests';
+import { logOut } from './api/accountRequests';
 
 import LogIn from './components/LogIn';
 
@@ -44,7 +44,7 @@ function App() {
 
         <button
           onClick={(event) => {
-            console.log('come back and find out why this is console logging automatically, this is supposed to be the log out button...')
+            logOut();
           }
 
 

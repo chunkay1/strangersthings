@@ -84,6 +84,7 @@ export async function logIn(props) {
 }
 
 export function logOut() {
+    console.log('logged out!')
     localStorage.clear();
 }
 

@@ -17,6 +17,7 @@ function Postcard({ _id, title, price, description, location, author, isAuthor }
             <span>Location: {location}</span>
             <br />
             <span>isAuthor: {isAuthor}</span>
+            <br />
             {
                 userID === authID
                     ?
@@ -45,6 +46,26 @@ function Postcard({ _id, title, price, description, location, author, isAuthor }
 
                     null
 
+
+            }
+            {
+                (token && userID !== authID)
+                    ?
+                    <button
+                        onClick={
+                            (event) => {
+                                event.preventDefault();
+                                // <NewMessage
+                                //     postID={_id}
+                                // />
+                                console.log('send a message');
+                            }
+                        }
+                    >Send Seller a Message</button>
+
+                    :
+
+                    null
 
             }
         </div>
