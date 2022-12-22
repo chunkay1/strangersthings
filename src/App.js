@@ -9,6 +9,7 @@ import NewPost from './components/NewPost';
 import { logOut } from './api/accountRequests';
 
 import LogIn from './components/LogIn';
+// import MessageForm from './components/MessageForm';
 
 
 
@@ -21,14 +22,17 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem(`${STORAGE_KEY}`);
 
-    setToken(token)
+    if (token) {
+      setToken(token)
+      myProfile({ token })
+    }
 
   }, [])
 
-  useEffect(() => {
-    myProfile({ token })
-    console.log('first');
-  }, [token])
+  // useEffect(() => {
+  //   myProfile({ token })
+  //   console.log('first');
+  // }, [token])
 
 
   return (
@@ -66,6 +70,7 @@ function App() {
             </>
             :
             <>
+
               <NewPost />
               <Posts />
             </>

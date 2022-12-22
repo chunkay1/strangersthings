@@ -1,7 +1,7 @@
 import { BASEURL, STORAGE_KEY } from "./postsRequests"
 
-export async function newMessage({ token, message, postID }) {
-
+export async function newMessage({ message, postID }) {
+    const token = localStorage.getItem(`${STORAGE_KEY}`)
     const body = JSON.stringify({
         message: {
             content: { message }
@@ -20,7 +20,7 @@ export async function newMessage({ token, message, postID }) {
                 body
             }
         )
-        const json = await response.json;
+        const json = await response.json();
         console.log(json)
     } catch (error) {
         console.log('error sending message');

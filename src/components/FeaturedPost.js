@@ -1,15 +1,15 @@
-// import { BASEURL } from "../api/accountRequests";
-// import { useState } from "react";
+import { useState } from "react";
 import { AUTHOR_ID } from "../api/accountRequests";
 import { deletePost, STORAGE_KEY } from "../api/postsRequests";
 
-function Postcard({ _id, title, price, description, location, author, isAuthor, willDeliver, postState, featuredPostProps }) {
+function FeaturedPost({ postState, featuredPostProps }) {
     const userID = localStorage.getItem(`${AUTHOR_ID}`)
-    const authID = author._id
+    // const authID = author._id
+    const authID = localStorage.getItem(`${AUTHOR_ID}`)
     const token = localStorage.getItem(`${STORAGE_KEY}`)
+    const title = featuredPostProps.title;
+    const { price, description, location, willDeliver, _id, author, } = featuredPostProps;
     // const [featuredPost, setFeaturedPost] = useState(false);
-
-
 
     return (
         <div key={_id}>
@@ -18,44 +18,28 @@ function Postcard({ _id, title, price, description, location, author, isAuthor, 
             <span>Price: {price}</span>
             <br />
 
-            <button
-                onClick={
-                    (event) => {
-                        // console.log('view post')
-                        // console.log(_id)
-
-                        return (
-                            {
-                                state: postState(true),
-                                props: featuredPostProps(title, price, description, location, willDeliver, author, isAuthor),
-                            }
-                            // postTitle(title)
-                            // postDescription(description)
-                            // postPrice(price)
-                            // postLocation(location)
-                            // postAuthor(author)
-                            // postIsAuthor(isAuthor)
-                        )
-
-                        // setFeaturedPost(true);
-                    }
-                }
-
-            > View Post</button>
-            {/* <span>Description: {description}</span>
+            <span>Description: {description}</span>
             <br />
             <span>Location: {location}</span>
             <br />
-            <span>isAuthor: {isAuthor}</span> */}
+            <span>Willing to Deliver?: {willDeliver}</span>
             <br />
 
+            <button
+                onClick={
+                    (event) => {
+                        postState(false)
+
+                    }
+                }
+            > Close </button>
             {
                 (token && userID !== authID)
                     ?
                     <button
                         onClick={
                             (event) => {
-                                event.preventDefault();
+                                // event.preventDefault();
                                 // <NewMessage
                                 //     postID={_id}
                                 // />
@@ -104,6 +88,6 @@ function Postcard({ _id, title, price, description, location, author, isAuthor, 
 
         </div >
     )
-};
+}
 
-export default Postcard;
+export default FeaturedPost; 
