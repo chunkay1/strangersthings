@@ -1,19 +1,42 @@
 import { useState } from "react";
 import { AUTHOR_ID } from "../api/accountRequests";
 import { deletePost, STORAGE_KEY } from "../api/postsRequests";
+import MessageForm from "./MessageForm";
 
-function FeaturedPost({ postState, featuredPostProps }) {
+function FeaturedPost({ postState, featuredPostProps, test }) {
     const userID = localStorage.getItem(`${AUTHOR_ID}`)
-    // const authID = author._id
-    const authID = localStorage.getItem(`${AUTHOR_ID}`)
+    // const authID = localStorage.getItem(`${AUTHOR_ID}`)
     const token = localStorage.getItem(`${STORAGE_KEY}`)
-    const title = featuredPostProps.title;
-    const { price, description, location, willDeliver, _id, author, } = featuredPostProps;
+    // 
+
+    const { title, price, description, location, willDeliver, author, username, authID, postID } = featuredPostProps;
+
+    const [messageState, setMessageState] = useState(false);
+
+    // const { title, price, description, location, willDeliver, authID, postID, author, username } = featuredPostProps;
+
+
     // const [featuredPost, setFeaturedPost] = useState(false);
 
+    // console.log({ title })
+
+    // console.log(author);
+    // console.log(userID);
+    // console.log(authID);
+    // console.log(postID)
+    // console.log(username)
+    // console.log(token);
+    // console.log(price);
+    // console.log({ description });
+    // console.log({ location });
+    // console.log({ willDeliver });
     return (
-        <div key={_id}>
+        <div key={postID}>
+
             <h3>{title}</h3>
+
+            <span>Seller: {username}</span>
+            <br />
 
             <span>Price: {price}</span>
             <br />
@@ -33,17 +56,33 @@ function FeaturedPost({ postState, featuredPostProps }) {
                     }
                 }
             > Close </button>
+
             {
-                (token && userID !== authID)
+                messageState
+
+                    ?
+
+                    <MessageForm
+
+                        setMessageState={setMessageState}
+                        postID={postID}
+                    />
+
+                    :
+
+                    null
+            }
+
+            {
+                ((token && userID !== authID) && !messageState)
                     ?
                     <button
                         onClick={
                             (event) => {
                                 // event.preventDefault();
-                                // <NewMessage
-                                //     postID={_id}
-                                // />
-                                console.log('send a message');
+                                // console.log(postID)
+                                setMessageState(true);
+
                             }
                         }
                     >Send Seller a Message</button>
@@ -63,7 +102,7 @@ function FeaturedPost({ postState, featuredPostProps }) {
 
                             onClick={
                                 (event) => {
-                                    deletePost({ _id, token })
+                                    deletePost({ postID, token })
                                 }
                             }
                         >Delete</button>

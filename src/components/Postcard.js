@@ -3,10 +3,10 @@
 import { AUTHOR_ID } from "../api/accountRequests";
 import { deletePost, STORAGE_KEY } from "../api/postsRequests";
 
-function Postcard({ _id, title, price, description, location, author, isAuthor, willDeliver, postState, featuredPostProps }) {
+function Postcard({ _id, title, price, description, location, author, isAuthor, willDeliver, postState, getFeaturedPostProps }) {
+    const token = localStorage.getItem(`${STORAGE_KEY}`)
     const userID = localStorage.getItem(`${AUTHOR_ID}`)
     const authID = author._id
-    const token = localStorage.getItem(`${STORAGE_KEY}`)
     // const [featuredPost, setFeaturedPost] = useState(false);
 
 
@@ -22,34 +22,36 @@ function Postcard({ _id, title, price, description, location, author, isAuthor, 
                 onClick={
                     (event) => {
                         // console.log('view post')
+                        // console.log(authID);
+                        // console.log(userID);
+                        // console.log(author);
+                        //here, author is an object with _id & username as keys. The values would those pertaining to the post author. 
+
+                        // console.log(isAuthor);
                         // console.log(_id)
+                        //here _id is a string with the post id number. 
+
+
+
+
 
                         return (
                             {
                                 state: postState(true),
-                                props: featuredPostProps(title, price, description, location, willDeliver, author, isAuthor),
+                                props: getFeaturedPostProps(title, price, description, location, willDeliver, _id, author),
                             }
-                            // postTitle(title)
-                            // postDescription(description)
-                            // postPrice(price)
-                            // postLocation(location)
-                            // postAuthor(author)
-                            // postIsAuthor(isAuthor)
+
                         )
 
-                        // setFeaturedPost(true);
+
                     }
                 }
 
             > View Post</button>
-            {/* <span>Description: {description}</span>
-            <br />
-            <span>Location: {location}</span>
-            <br />
-            <span>isAuthor: {isAuthor}</span> */}
+
             <br />
 
-            {
+            {/* {
                 (token && userID !== authID)
                     ?
                     <button
@@ -68,7 +70,7 @@ function Postcard({ _id, title, price, description, location, author, isAuthor, 
 
                     null
 
-            }
+            } */}
 
             {
                 userID === authID

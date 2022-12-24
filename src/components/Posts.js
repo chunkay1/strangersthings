@@ -9,6 +9,7 @@ import Postcard from "./Postcard";
 function Posts() {
     const [posts, setPosts] = useState([]);
     const [featuredPost, setFeaturedPost] = useState(false);
+    const [featuredPostProps, setFeaturedPostProps] = useState({});
 
 
     useEffect(() => {
@@ -27,15 +28,48 @@ function Posts() {
         setFeaturedPost(state)
     };
 
-    const featuredPostProps = (title, price, description, location, willDeliver, _id, author) => {
-        console.log(title)
-        console.log(price)
-        console.log(description)
-        console.log(location)
-        console.log(willDeliver)
-        console.log(_id.username)
-        console.log(_id._id)
-        console.log(author)
+    const getFeaturedPostProps = (title, price, description, location, willDeliver, _id, author) => {
+        
+        // console.log(title)
+        // console.log(price)
+        // console.log(description)
+        // console.log(location)
+        // console.log(willDeliver)
+        // console.log(_id)
+        // console.log(author)
+        // console.log(_id.username)
+        // console.log(_id._id)
+        // console.log(author)
+
+        
+        //   setFeaturedPostProps(  
+        //         {
+        //             title: title,
+        //             price: price, 
+        //             description: description,
+        //             location: location, 
+        //             willDeliver: willDeliver, 
+        //             author: author,
+        //             username: _id.username, 
+        //             authID: _id._id,
+        //             postID: _id,
+        //         }
+        //     )
+
+            setFeaturedPostProps(  
+                {
+                    title: title,
+                    price: price, 
+                    description: description,
+                    location: location, 
+                    willDeliver: willDeliver, 
+                    author: author,
+                    username: author.username, 
+                    authID: author._id,
+                    postID: _id,
+                }
+            )
+    
         
     }
 
@@ -69,7 +103,7 @@ function Posts() {
                                 isAuthor={isAuthor}
                                 willDeliver= {willDeliver}
                                 postState={postState}
-                                featuredPostProps={featuredPostProps}
+                                getFeaturedPostProps={getFeaturedPostProps}
     
                             />
                             
@@ -81,14 +115,17 @@ function Posts() {
         
     
         :
-    
+        
+
+        
+        
+        
         <FeaturedPost
-            postState={postState}
-            featuredPostProps={featuredPostProps}
+        postState={postState}
+        featuredPostProps={featuredPostProps}
+        test={'test'} />
 
-
-
-        />
+                
     
     }
     

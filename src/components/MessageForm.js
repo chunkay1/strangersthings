@@ -2,7 +2,7 @@ import { useState } from "react";
 import { setTargetValue } from "../constants/constants";
 import { newMessage } from "../api/messageRequests";
 
-function MessageForm({ postID }) {
+function MessageForm({ postID, setMessageState }) {
     const [message, setMessage] = useState('')
 
 
@@ -13,8 +13,11 @@ function MessageForm({ postID }) {
                 onSubmit={
                     (event) => {
                         event.preventDefault();
-                        console.log('message sent')
-                        newMessage({ message, postID })
+                        console.log(message)
+                        console.log(postID)
+                        newMessage(message, postID)
+                        setMessage('')
+                        //code or helper function that returns a success message on an interval. 
                     }}>
                 <span>
                     <label
@@ -35,7 +38,17 @@ function MessageForm({ postID }) {
             </form>
 
             <button
-                className="cancel">cancel/go back</button>
+                className="cancel"
+                onClick={
+                    (event) => {
+                        console.log({ postID })
+                        return (
+                            setMessageState(false)
+                        )
+                    }
+                }
+
+            >cancel/go back</button>
 
         </div>
     )
