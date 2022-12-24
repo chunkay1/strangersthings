@@ -2,7 +2,6 @@
 export const BASEURL = 'https://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt'
 export const STORAGE_KEY = 'replyToken';
 
-
 //post related functions
 
 export async function getPosts() {
@@ -90,6 +89,42 @@ export async function deletePost({ token, _id }) {
         console.error(error)
     }
 
+}
+
+export async function editPost(props) {
+    const token = props.token;
+    const postID = props.postID;
+    const body = JSON.stringify({
+        post: {
+            title: props.editedTitle,
+            description: props.editedDescription,
+            price: props.editedPrice,
+            location: props.editedLocation,
+            willDeliver: props.editedWillDeliver,
+        }
+    });
+    console.log(postID)
+    console.log(token)
+    console.log(body)
+    try {
+        const response = await fetch(
+            `${BASEURL}/posts/${postID}`,
+            {
+                method: "PATCH",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body,
+            },
+        );
+
+        const json = response.json();
+        console.log(json);
+    } catch (error) {
+        console.log(error);
+        console.error(error);
+    }
 }
 
 

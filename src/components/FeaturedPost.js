@@ -1,22 +1,18 @@
 import { useState } from "react";
 import { AUTHOR_ID } from "../api/accountRequests";
 import { deletePost, STORAGE_KEY } from "../api/postsRequests";
+import EditForm from "./EditForm";
 import MessageForm from "./MessageForm";
 
 function FeaturedPost({ postState, featuredPostProps, test }) {
     const userID = localStorage.getItem(`${AUTHOR_ID}`)
-    // const authID = localStorage.getItem(`${AUTHOR_ID}`)
     const token = localStorage.getItem(`${STORAGE_KEY}`)
-    // 
 
     const { title, price, description, location, willDeliver, author, username, authID, postID } = featuredPostProps;
 
     const [messageState, setMessageState] = useState(false);
+    const [editState, setEditState] = useState(false);
 
-    // const { title, price, description, location, willDeliver, authID, postID, author, username } = featuredPostProps;
-
-
-    // const [featuredPost, setFeaturedPost] = useState(false);
 
     // console.log({ title })
 
@@ -48,22 +44,12 @@ function FeaturedPost({ postState, featuredPostProps, test }) {
             <span>Willing to Deliver?: {willDeliver}</span>
             <br />
 
-            <button
-                onClick={
-                    (event) => {
-                        postState(false)
-
-                    }
-                }
-            > Close </button>
-
             {
                 messageState
 
                     ?
 
                     <MessageForm
-
                         setMessageState={setMessageState}
                         postID={postID}
                     />
@@ -74,8 +60,42 @@ function FeaturedPost({ postState, featuredPostProps, test }) {
             }
 
             {
-                ((token && userID !== authID) && !messageState)
+                editState
+
                     ?
+
+                    <EditForm
+                        setEditState={setEditState}
+                        postID={postID}
+                        title={title}
+                        username={username}
+                        price={price}
+                        description={description}
+                        location={location}
+                        willDeliver={willDeliver}
+                    />
+
+                    // <EditForm
+                    //     setEditState={setEditState}
+                    //     postID={postID}
+                    //     editedTitle={title}
+                    //     editedUsername={username}
+                    //     editedPrice={price}
+                    //     editedDescription={description}
+                    //     editedLocation={location}
+                    //     willDeliver={willDeliver}
+                    // />
+
+                    :
+
+                    null
+            }
+
+            {
+                (token && (userID !== authID) && !messageState)
+
+                    ?
+
                     <button
                         onClick={
                             (event) => {
@@ -90,16 +110,16 @@ function FeaturedPost({ postState, featuredPostProps, test }) {
                     :
 
                     null
-
             }
 
             {
-                userID === authID
-                    ?
-                    <span>
-                        <button
-                            // onClick={deletePost()}
+                (token && (userID === authID) && !editState)
 
+                    ?
+
+                    <>
+
+                        <button
                             onClick={
                                 (event) => {
                                     deletePost({ postID, token })
@@ -107,22 +127,33 @@ function FeaturedPost({ postState, featuredPostProps, test }) {
                             }
                         >Delete</button>
 
+                        <br />
+
                         <button
                             // onClick={editPost()
                             onClick={
                                 (event) => {
-                                    console.log('This is the edit button')
+                                    // console.log('This is the edit button')
+                                    setEditState(true);
                                 }
                             }
                         >Edit</button>
-                    </span>
 
+                        <br />
+
+                    </>
                     :
 
                     null
-
-
             }
+
+            <button
+                onClick={
+                    (event) => {
+                        postState(false)
+                    }
+                }
+            > Close </button>
 
 
         </div >

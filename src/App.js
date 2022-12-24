@@ -67,6 +67,7 @@ function App() {
             <>
               <NewAccount />
               <LogIn />
+              <Posts />
             </>
             :
             <>

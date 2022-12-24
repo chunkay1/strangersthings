@@ -1,7 +1,7 @@
 // import { BASEURL } from "../api/accountRequests";
 // import { useState } from "react";
 import { AUTHOR_ID } from "../api/accountRequests";
-import { deletePost, STORAGE_KEY } from "../api/postsRequests";
+import { STORAGE_KEY } from "../api/postsRequests";
 
 function Postcard({ _id, title, price, description, location, author, isAuthor, willDeliver, postState, getFeaturedPostProps }) {
     const token = localStorage.getItem(`${STORAGE_KEY}`)
@@ -14,6 +14,41 @@ function Postcard({ _id, title, price, description, location, author, isAuthor, 
     return (
         <div key={_id}>
             <h3>{title}</h3>
+
+            {
+                ((userID === authID) && token)
+                    ?
+                    <>
+
+                        <h5>View Post to Edit and Delete</h5>
+                        {/* <button
+                            // onClick={deletePost()}
+
+                            onClick={
+                                (event) => {
+                                    deletePost({ _id, token })
+                                }
+                            }
+                        >Delete</button>
+
+                        <button
+                            // onClick={editPost()
+                            onClick={
+                                (event) => {
+                                    console.log('This is the edit button')
+                                }
+                            }
+                        >Edit</button> */}
+                    </>
+
+                    :
+
+                    null
+
+
+            }
+
+
 
             <span>Price: {price}</span>
             <br />
@@ -31,10 +66,6 @@ function Postcard({ _id, title, price, description, location, author, isAuthor, 
                         // console.log(_id)
                         //here _id is a string with the post id number. 
 
-
-
-
-
                         return (
                             {
                                 state: postState(true),
@@ -46,10 +77,9 @@ function Postcard({ _id, title, price, description, location, author, isAuthor, 
 
                     }
                 }
-
             > View Post</button>
 
-            <br />
+
 
             {/* {
                 (token && userID !== authID)
@@ -72,36 +102,6 @@ function Postcard({ _id, title, price, description, location, author, isAuthor, 
 
             } */}
 
-            {
-                userID === authID
-                    ?
-                    <span>
-                        <button
-                            // onClick={deletePost()}
-
-                            onClick={
-                                (event) => {
-                                    deletePost({ _id, token })
-                                }
-                            }
-                        >Delete</button>
-
-                        <button
-                            // onClick={editPost()
-                            onClick={
-                                (event) => {
-                                    console.log('This is the edit button')
-                                }
-                            }
-                        >Edit</button>
-                    </span>
-
-                    :
-
-                    null
-
-
-            }
 
 
         </div >

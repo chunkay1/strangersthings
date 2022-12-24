@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { newPost } from "../api/postsRequests";
 import { STORAGE_KEY } from "../api/postsRequests";
+import { setTargetValue } from "../constants/constants";
 
 function NewPost() {
     const [title, setTitle] = useState('')
@@ -10,11 +11,11 @@ function NewPost() {
     // const [willDeliver, setDeliverStatus] = useState(null)
     const [token, setToken] = useState('')
 
-    const setTargetValue = (callback) => {
-        return (event) => {
-            callback(event.target.value)
-        }
-    }
+    // const setTargetValue = (callback) => {
+    //     return (event) => {
+    //         callback(event.target.value)
+    //     }
+    // }
 
     useEffect(() => {
         const storageToken = localStorage.getItem(`${STORAGE_KEY}`);
@@ -43,6 +44,8 @@ function NewPost() {
                         required />
                 </span>
 
+                <br />
+
                 <span>
                     <label for="price">Price</label>
                     &nbsp;
@@ -53,6 +56,8 @@ function NewPost() {
                         required />
                 </span>
 
+                <br />
+
                 <span>
                     <label for="description">Description</label>
                     &nbsp;
@@ -62,6 +67,8 @@ function NewPost() {
                         value={description}
                         required />
                 </span>
+
+                <br />
 
                 <span>
                     <label for="location">Location</label>
@@ -80,6 +87,8 @@ function NewPost() {
                         value={setTargetValue(setDeliverStatus)}
                         type="checkbox" />
                 </span> */}
+
+                <br />
 
                 <button>Post</button>
 
