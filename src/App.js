@@ -9,6 +9,7 @@ import NewPost from './components/NewPost';
 import { logOut } from './api/accountRequests';
 
 import LogIn from './components/LogIn';
+import Profile from './components/Profile';
 // import MessageForm from './components/MessageForm';
 
 
@@ -46,15 +47,22 @@ function App() {
           <li>Profile</li>
         </ul>
 
-        <button
-          onClick={(event) => {
-            logOut();
-          }
 
+        {
+          token
 
+            ?
 
-          }
-        >Log Out</button>
+            <button
+              onClick={(event) => {
+                logOut();
+              }
+              }>Log Out</button>
+
+            :
+
+            null
+        }
 
       </nav>
 
@@ -73,6 +81,9 @@ function App() {
             <>
 
               <NewPost />
+              <Profile
+                token={token}
+              />
               <Posts />
             </>
         }

@@ -65,7 +65,7 @@ export async function logIn(props) {
         const json = await response.json();
         const replyToken = json.data.token;
         const message = json.data.message;
-        const success = json.data.success;
+        // const success = json.data.success;
 
 
         if (replyToken) {
@@ -74,7 +74,7 @@ export async function logIn(props) {
         console.log(json)
         console.log(replyToken);
         console.log(message);
-        console.log(success);
+
 
     } catch (error) {
         console.log('Failed to Log In')
@@ -102,11 +102,22 @@ export async function myProfile(props) {
         )
         const json = await response.json();
         const authorID = json.data._id;
+        const data = json.data;
+        const messages = data.messages
+        // console.log(data);
+        console.log(messages);
+        //^^it's an array within an object, we need to map through messages and get the values. 
+        // console.log(data.messages.content);
+        // console.log(data.posts) <-- this only gets posts by the user, not inbound messages
         // console.log(authorID)
-        // console.log('second')
+
         if (authorID) {
             localStorage.setItem(`${AUTHOR_ID}`, authorID)
         }
+
+        return (
+            messages
+        )
 
     } catch (error) {
         console.log('failed to load profile');
