@@ -1,4 +1,6 @@
 import { logOut } from "../api/accountRequests";
+import NewAccount from "./NewAccount";
+import LogIn from "./LogIn";
 
 function NavBar({ token }) {
     return (
@@ -11,8 +13,28 @@ function NavBar({ token }) {
                 <li>Profile</li>
             </ul>
 
-
             {
+                (!token)
+
+                    ?
+
+                    <div>
+                        <NewAccount />
+                        <LogIn />
+                    </div>
+
+                    :
+
+                    <button
+                        onClick={(event) => {
+                            logOut();
+                        }
+                        }>Log Out</button>
+
+            }
+
+
+            {/* {
                 token
 
                     ?
@@ -26,7 +48,7 @@ function NavBar({ token }) {
                     :
 
                     null
-            }
+            } */}
 
         </>
     )
