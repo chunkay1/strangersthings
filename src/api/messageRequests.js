@@ -23,7 +23,7 @@ export async function newMessage(message, postID) {
             }
         )
         const json = await response.json();
-        console.log(json)
+        // console.log(json)
     } catch (error) {
         console.log('error sending message');
         console.error(error)

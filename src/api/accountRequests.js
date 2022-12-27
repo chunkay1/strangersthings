@@ -105,7 +105,7 @@ export async function myProfile(props) {
         const data = json.data;
         const messages = data.messages
         // console.log(data);
-        console.log(messages);
+        // console.log(messages);
         //^^it's an array within an object, we need to map through messages and get the values. 
         // console.log(data.messages.content);
         // console.log(data.posts) <-- this only gets posts by the user, not inbound messages

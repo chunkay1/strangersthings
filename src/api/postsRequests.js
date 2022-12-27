@@ -9,7 +9,7 @@ export async function getPosts() {
         const response = await fetch(
             `${BASEURL}/posts`);
         const json = await response.json();
-        // console.log(json.data.posts);
+        console.log(json.data.posts);
 
 
         return (

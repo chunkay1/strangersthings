@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 // import { URL } from "../constants/constants"
 import { getPosts } from "../api/postsRequests";
 import FeaturedPost from "./FeaturedPost";
@@ -7,7 +8,7 @@ import { setTargetValue } from "../constants/constants";
 //URL.baseURL
 
 
-function Posts() {
+function Posts({ token }) {
     const [posts, setPosts] = useState([]);
     const [featuredPost, setFeaturedPost] = useState(false);
     const [featuredPostProps, setFeaturedPostProps] = useState({});
@@ -77,6 +78,19 @@ function Posts() {
                     placeholder="Search Posts..."
                 />
             </form>
+
+            {
+                token
+
+                    ?
+                    <h2>View post to message a seller or manage your posts.</h2>
+
+                    :
+                    <>
+                        <h2>In order to create a post or message a seller, please <Link to={'/home'}>sign-in or create an account!</Link></h2>
+                    </>
+            }
+
 
             {
 

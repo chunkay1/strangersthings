@@ -1,6 +1,7 @@
 import { logOut } from "../api/accountRequests";
-import NewAccount from "./NewAccount";
-import LogIn from "./LogIn";
+import { Link } from "react-router-dom";
+// import NewAccount from "./NewAccount";
+// import LogIn from "./LogIn";
 
 function NavBar({ token }) {
     return (
@@ -8,9 +9,9 @@ function NavBar({ token }) {
             <h1>Stranger's Things</h1>
 
             <ul>
-                <li>Home</li>
-                <li>Posts</li>
-                <li>Profile</li>
+                <li><Link to={'/home'}>Home</Link></li>
+                <li><Link to={'/posts'}>Posts</Link></li>
+                <li><Link to={'/profile'}>Profile</Link></li>
             </ul>
 
             {
@@ -18,10 +19,7 @@ function NavBar({ token }) {
 
                     ?
 
-                    <div>
-                        <NewAccount />
-                        <LogIn />
-                    </div>
+                    null
 
                     :
 
