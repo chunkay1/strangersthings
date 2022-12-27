@@ -1,30 +1,35 @@
-function NavBar() {
-    <nav>
-        <h1>Stranger's Things</h1>
+import { logOut } from "../api/accountRequests";
 
-        <ul>
-            <li>Home</li>
-            <li>Posts</li>
-            <li>Profile</li>
-        </ul>
+function NavBar({ token }) {
+    return (
+        <>
+            <h1>Stranger's Things</h1>
+
+            <ul>
+                <li>Home</li>
+                <li>Posts</li>
+                <li>Profile</li>
+            </ul>
 
 
-        {
-            token
+            {
+                token
 
-                ?
+                    ?
 
-                <button
-                    onClick={(event) => {
-                        logOut();
-                    }
-                    }>Log Out</button>
+                    <button
+                        onClick={(event) => {
+                            logOut();
+                        }
+                        }>Log Out</button>
 
-                :
+                    :
 
-                null
-        }
+                    null
+            }
 
-    </nav>
-
+        </>
+    )
 }
+
+export default NavBar

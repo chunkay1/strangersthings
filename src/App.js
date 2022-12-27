@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { Switch, Route } from 'react-router';
 
 import { myProfile, STORAGE_KEY } from './api/accountRequests';
 
+import NavBar from './components/NavBar';
 import NewAccount from './components/NewAccount';
 import Posts from './components/Posts';
 import NewPost from './components/NewPost';
 
-import { logOut } from './api/accountRequests';
+// import { logOut } from './api/accountRequests';
 
 import LogIn from './components/LogIn';
 import Profile from './components/Profile';
+
 // import MessageForm from './components/MessageForm';
 
 
@@ -39,56 +42,36 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <h1>Stranger's Things</h1>
-
-        <ul>
-          <li>Home</li>
-          <li>Posts</li>
-          <li>Profile</li>
-        </ul>
-
-
-        {
-          token
-
-            ?
-
-            <button
-              onClick={(event) => {
-                logOut();
-              }
-              }>Log Out</button>
-
-            :
-
-            null
-        }
-
+        <NavBar
+          token={token}
+        />
       </nav>
 
       <main>
+        <Switch>
 
 
-        {
-          (!token)
-            ?
-            <>
-              <NewAccount />
-              <LogIn />
-              <Posts />
-            </>
-            :
-            <>
+          {
+            (!token)
+              ?
+              <>
+                <NewAccount />
+                <LogIn />
+                <Posts />
+              </>
+              :
+              <>
 
-              <NewPost />
-              <Profile
-                token={token}
-              />
-              <Posts />
-            </>
-        }
-        {/* <br /> */}
+                <NewPost />
+                <Profile
+                  token={token}
+                />
+                <Posts />
+              </>
+          }
+          {/* <br /> */}
 
+        </Switch>
       </main>
     </div >
   );
