@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
 import { newPost } from "../api/postsRequests";
 import { STORAGE_KEY } from "../api/postsRequests";
-import { setTargetValue } from "../constants/constants";
+import { setTargetValue, getPostsAsync } from "../constants/constants";
 
-function NewPost() {
+
+function NewPost({ setPostChange }) {
     const [title, setTitle] = useState('')
     const [price, setPrice] = useState('')
     const [description, setDescription] = useState('')
     const [location, setLocation] = useState('')
     // const [willDeliver, setDeliverStatus] = useState(null)
     const [token, setToken] = useState('')
-
-    // const setTargetValue = (callback) => {
-    //     return (event) => {
-    //         callback(event.target.value)
-    //     }
-    // }
 
     useEffect(() => {
         const storageToken = localStorage.getItem(`${STORAGE_KEY}`);
@@ -30,8 +25,15 @@ function NewPost() {
                 onSubmit={
                     (event) => {
                         event.preventDefault();
-                        newPost({ title, price, description, location, token })
-                    }}
+                        newPost({ title, price, description, location, token });
+                        console.log(getPostsAsync());
+                        setTitle('');
+                        setPrice('');
+                        setDescription('');
+                        setLocation('');
+                        setPostChange(true);
+                    }
+                }
             >
 
                 <span>
@@ -93,9 +95,6 @@ function NewPost() {
                 <button>Post</button>
 
             </form>
-
-
-
 
         </>
     )

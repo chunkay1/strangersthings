@@ -1,16 +1,11 @@
-// import { AUTHOR_ID } from "./accountRequests";
 export const BASEURL = 'https://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt'
 export const STORAGE_KEY = 'replyToken';
-
-//post related functions
 
 export async function getPosts() {
     try {
         const response = await fetch(
             `${BASEURL}/posts`);
         const json = await response.json();
-        console.log(json.data.posts);
-
 
         return (
             json.data.posts
@@ -34,7 +29,7 @@ export async function newPost(props) {
     });
 
     try {
-        const response = await fetch(
+        await fetch(
             `${BASEURL}/posts`,
             {
                 method: "POST",
@@ -45,21 +40,6 @@ export async function newPost(props) {
                 body,
             }
         )
-        const json = await response.json();
-        const post = json.data.post;
-        const location = post.location;
-        const id = post._id;
-        const title = post.title;
-        const author = post.author;
-        const isAuthor = post.isAuthor;
-
-        console.log(json);
-        console.log(post);
-        console.log(location);
-        console.log(id);
-        console.log(title);
-        console.log(author);
-        console.log(isAuthor);
 
     } catch (error) {
         console.log(error);
@@ -67,11 +47,9 @@ export async function newPost(props) {
     }
 }
 
-export async function deletePost({ token, _id }) {
-    // const token = props.token;
-    // const postID = props._id;
+export async function deletePost(token, _id) {
     try {
-        const response = await fetch(
+        await fetch(
             `${BASEURL}/posts/${_id}`,
             {
                 method: "DELETE",
@@ -81,9 +59,6 @@ export async function deletePost({ token, _id }) {
                 }
             }
         )
-
-        const json = await response.json();
-        console.log(json);
     } catch (error) {
         console.log(error);
         console.error(error)
@@ -103,11 +78,8 @@ export async function editPost(props) {
             willDeliver: props.editedWillDeliver,
         }
     });
-    console.log(postID)
-    console.log(token)
-    console.log(body)
     try {
-        const response = await fetch(
+        await fetch(
             `${BASEURL}/posts/${postID}`,
             {
                 method: "PATCH",
@@ -118,9 +90,6 @@ export async function editPost(props) {
                 body,
             },
         );
-
-        const json = response.json();
-        console.log(json);
     } catch (error) {
         console.log(error);
         console.error(error);

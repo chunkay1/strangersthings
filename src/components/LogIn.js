@@ -1,23 +1,27 @@
 import { useState } from "react";
 import { logIn } from "../api/accountRequests"
+import { setTargetValue } from "../constants/constants";
+
 
 function LogIn() {
-    const [username, setUsername] = useState('')
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const setTargetValue = (callback) => {
-        return (event) => {
-            callback(event.target.value)
-        }
+
+    const setCredentials = async () => {
+        await logIn({ username, password });
+        window.location.reload()
     }
 
     return (
         <>
             <h1>Log In</h1>
+
             <form onSubmit={(event) => {
                 event.preventDefault();
-                logIn({ username, password })
-
+                setCredentials();
+                setUsername('');
+                setPassword('');
             }}
             >
                 <label for="username">Username</label>

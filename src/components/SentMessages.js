@@ -14,9 +14,6 @@ function SentMessages({ content, fromUser, post, _id, token, user }) {
             null
         )
     }
-
-
-
 }
 
 export default SentMessages;

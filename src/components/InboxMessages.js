@@ -12,7 +12,6 @@ function InboxMessages({ content, fromUser, post, _id, token, user }) {
                 <span>Subject: {title} </span>
                 <span>Message: {content}  </span>
 
-
             </div>
         )
     } else {

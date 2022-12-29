@@ -1,52 +1,22 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import { URL } from "../constants/constants"
 import { getPosts } from "../api/postsRequests";
 import FeaturedPost from "./FeaturedPost";
+import NewPost from "./NewPost";
 import Postcard from "./Postcard";
-import { setTargetValue } from "../constants/constants";
-//URL.baseURL
 
 
 function Posts({ token }) {
     const [posts, setPosts] = useState([]);
     const [featuredPost, setFeaturedPost] = useState(false);
     const [featuredPostProps, setFeaturedPostProps] = useState({});
-    const [searchResults, setSearchResults] = useState('');
-
-
-    useEffect(() => {
-        const getPostsAsync = async () => {
-            const posts = await getPosts();
-
-            setPosts(posts)
-            // console.log(posts);
-        }
-        getPostsAsync();
-    }, []);
-
-    // useEffect(() => {
-    //     setPosts(setSearchResults(searchResults))
-    // }, [])
+    const [postChange, setPostChange] = useState(false)
 
     const postState = (state) => {
-        // console.log(state)
-        // console.log('this is happening in posts')
         setFeaturedPost(state)
     };
 
     const getFeaturedPostProps = (title, price, description, location, willDeliver, _id, author) => {
-
-        // console.log(title)
-        // console.log(price)
-        // console.log(description)
-        // console.log(location)
-        // console.log(willDeliver)
-        // console.log(_id)
-        // console.log(author)
-        // console.log(_id.username)
-        // console.log(_id._id)
-        // console.log(author)
 
         setFeaturedPostProps(
             {
@@ -63,27 +33,31 @@ function Posts({ token }) {
         )
     }
 
+    useEffect(() => {
+        const getPostsAsync = async () => {
+            const posts = await getPosts();
 
-
-    // const {key, location, title, description, price, _id, author, isAuthor} = featuredPostProps();
+            console.log(posts);
+            setPosts(posts)
+        }
+        getPostsAsync();
+        setPostChange(false)
+        console.log('success');
+        console.log(postChange)
+    }, [postChange]);
 
     return (
         <>
-
-            <form>
-                <input
-                    type='search'
-                    value={searchResults}
-                    onChange={setTargetValue(setSearchResults)}
-                    placeholder="Search Posts..."
-                />
-            </form>
 
             {
                 token
 
                     ?
-                    <h2>View post to message a seller or manage your posts.</h2>
+                    <>
+                        <NewPost
+                            setPostChange={setPostChange} />
+                        <h2>View post to message a seller or manage your posts.</h2>
+                    </>
 
                     :
                     <>
@@ -117,6 +91,7 @@ function Posts({ token }) {
                                         willDeliver={willDeliver}
                                         postState={postState}
                                         getFeaturedPostProps={getFeaturedPostProps}
+                                        setPostChange={setPostChange}
 
                                     />
 
@@ -131,7 +106,8 @@ function Posts({ token }) {
                     <FeaturedPost
                         postState={postState}
                         featuredPostProps={featuredPostProps}
-                        test={'test'} />
+                        setPostChange={setPostChange}
+                    />
 
             }
 

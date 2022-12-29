@@ -25,12 +25,10 @@ function Messages({ messages, user }) {
                 })
             }
 
-
             <h3>Inbox</h3>
             <br />
             {
                 messages.map(({ content, fromUser, post, _id }) => {
-
 
                     return (
                         <InboxMessages

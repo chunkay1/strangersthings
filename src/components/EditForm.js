@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { setTargetValue } from "../constants/constants";
 import { editPost } from "../api/postsRequests";
-// import { setTargetValue } from "../constants/constants";
 import { STORAGE_KEY } from "../api/accountRequests";
 
-function EditForm({ postID, setEditState, title, username, price, description, location }) {
-    // const [editState, setEditState] = useState('')
+function EditForm({ postID, setEditState, title, username, price, description, location, postState, setPostChange }) {
     const [editedTitle, setEditedTitle] = useState(`${title}`)
     const [editedPrice, setEditedPrice] = useState(`${price}`)
     const [editedDescription, setEditedDescription] = useState(`${description}`)
     const [editedLocation, setEditedLocation] = useState(`${location}`)
-    // const [editedDelivery, setEditedDelivery] = useState(null);
+
     const token = localStorage.getItem(`${STORAGE_KEY}`)
 
 
@@ -21,15 +19,14 @@ function EditForm({ postID, setEditState, title, username, price, description, l
                 onSubmit={
                     (event) => {
                         event.preventDefault();
-                        // console.log(edit)
-                        // console.log(postID)
-                        // console.log(token);
                         editPost({ editedTitle, editedPrice, editedDescription, editedLocation, token, postID })
-                        // setEdit('')
                         setEditedTitle('');
                         setEditedPrice('');
                         setEditedDescription('');
                         setEditedLocation('');
+                        setPostChange(true);
+                        setEditState(false);
+                        postState(false);
                         //code or helper function that returns a success message on an interval. 
                     }}>
                 <span>
@@ -96,7 +93,7 @@ function EditForm({ postID, setEditState, title, username, price, description, l
 
                 <br />
 
-                    //delivery checkbox goes here.
+                {/* delivery checkbox goes here. */}
 
                 <br />
 
@@ -113,7 +110,6 @@ function EditForm({ postID, setEditState, title, username, price, description, l
                 className="cancel"
                 onClick={
                     (event) => {
-                        console.log({ postID })
                         return (
                             setEditState(false)
                         )

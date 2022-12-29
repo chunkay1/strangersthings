@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { createAccount } from "../api/accountRequests";
+import { setTargetValue } from "../constants/constants";
 
 function NewAccount() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const setTargetValue = (callback) => {
-        return (event) => {
-            callback(event.target.value)
-        }
+    const setCredentials = async () => {
+        await createAccount({ username, password });
+        window.location.reload()
     }
 
     return (
@@ -17,7 +17,9 @@ function NewAccount() {
             <form onSubmit={
                 (event) => {
                     event.preventDefault();
-                    createAccount({ username, password })
+                    setCredentials()
+                    setUsername('')
+                    setPassword('')
                 }}
             >
                 <label for="createUsername">Username</label>

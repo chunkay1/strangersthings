@@ -17,6 +17,7 @@ function MessageForm({ postID, setMessageState }) {
                         console.log(postID)
                         newMessage(message, postID)
                         setMessage('')
+                        setMessageState(false)
                         //code or helper function that returns a success message on an interval. 
                     }}>
                 <span>
@@ -41,7 +42,6 @@ function MessageForm({ postID, setMessageState }) {
                 className="cancel"
                 onClick={
                     (event) => {
-                        console.log({ postID })
                         return (
                             setMessageState(false)
                         )

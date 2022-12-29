@@ -4,28 +4,15 @@ import { deletePost, STORAGE_KEY } from "../api/postsRequests";
 import EditForm from "./EditForm";
 import MessageForm from "./MessageForm";
 
-function FeaturedPost({ postState, featuredPostProps, test }) {
+function FeaturedPost({ postState, featuredPostProps, setPostChange }) {
     const userID = localStorage.getItem(`${AUTHOR_ID}`)
     const token = localStorage.getItem(`${STORAGE_KEY}`)
 
-    const { title, price, description, location, willDeliver, author, username, authID, postID } = featuredPostProps;
+    const { title, price, description, location, willDeliver, username, authID, postID } = featuredPostProps;
 
     const [messageState, setMessageState] = useState(false);
     const [editState, setEditState] = useState(false);
 
-
-    // console.log({ title })
-
-    // console.log(author);
-    // console.log(userID);
-    // console.log(authID);
-    // console.log(postID)
-    // console.log(username)
-    // console.log(token);
-    // console.log(price);
-    // console.log({ description });
-    // console.log({ location });
-    // console.log({ willDeliver });
     return (
         <div key={postID}>
 
@@ -73,18 +60,9 @@ function FeaturedPost({ postState, featuredPostProps, test }) {
                         description={description}
                         location={location}
                         willDeliver={willDeliver}
+                        postState={postState}
+                        setPostChange={setPostChange}
                     />
-
-                    // <EditForm
-                    //     setEditState={setEditState}
-                    //     postID={postID}
-                    //     editedTitle={title}
-                    //     editedUsername={username}
-                    //     editedPrice={price}
-                    //     editedDescription={description}
-                    //     editedLocation={location}
-                    //     willDeliver={willDeliver}
-                    // />
 
                     :
 
@@ -99,10 +77,7 @@ function FeaturedPost({ postState, featuredPostProps, test }) {
                     <button
                         onClick={
                             (event) => {
-                                // event.preventDefault();
-                                // console.log(postID)
                                 setMessageState(true);
-
                             }
                         }
                     >Send Seller a Message</button>
@@ -122,7 +97,10 @@ function FeaturedPost({ postState, featuredPostProps, test }) {
                         <button
                             onClick={
                                 (event) => {
-                                    deletePost({ postID, token })
+                                    //add an are you sure button before allowing you to actually delete the post.
+                                    deletePost(token, postID);
+                                    postState(false);
+                                    setPostChange(true);
                                 }
                             }
                         >Delete</button>
@@ -130,10 +108,8 @@ function FeaturedPost({ postState, featuredPostProps, test }) {
                         <br />
 
                         <button
-                            // onClick={editPost()
                             onClick={
                                 (event) => {
-                                    // console.log('This is the edit button')
                                     setEditState(true);
                                 }
                             }
@@ -154,7 +130,6 @@ function FeaturedPost({ postState, featuredPostProps, test }) {
                     }
                 }
             > Close </button>
-
 
         </div >
     )

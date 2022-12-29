@@ -23,18 +23,11 @@ export async function createAccount(props) {
         )
         const json = await response.json();
         const replyToken = json.data.token;
-        const message = json.data.message;
-        const success = json.data.success;
 
 
         if (replyToken) {
             localStorage.setItem(`${STORAGE_KEY}`, replyToken)
         }
-        console.log(json)
-        // console.log(json.data.token)
-        console.log(replyToken);
-        console.log(message);
-        console.log(success);
 
     } catch (error) {
         console.log('Failed to Register')
@@ -44,6 +37,7 @@ export async function createAccount(props) {
 }
 
 export async function logIn(props) {
+
     const body = JSON.stringify({
         user: {
             username: props.username,
@@ -64,27 +58,23 @@ export async function logIn(props) {
         )
         const json = await response.json();
         const replyToken = json.data.token;
-        const message = json.data.message;
-        // const success = json.data.success;
 
 
         if (replyToken) {
             localStorage.setItem(`${STORAGE_KEY}`, replyToken)
         }
-        console.log(json)
-        console.log(replyToken);
-        console.log(message);
 
+        return (
+            replyToken
+        )
 
     } catch (error) {
         console.log('Failed to Log In')
         console.error(error)
     }
-
 }
 
 export function logOut() {
-    console.log('logged out!')
     localStorage.clear();
 }
 
@@ -104,12 +94,6 @@ export async function myProfile(props) {
         const authorID = json.data._id;
         const data = json.data;
         const messages = data.messages
-        // console.log(data);
-        // console.log(messages);
-        //^^it's an array within an object, we need to map through messages and get the values. 
-        // console.log(data.messages.content);
-        // console.log(data.posts) <-- this only gets posts by the user, not inbound messages
-        // console.log(authorID)
 
         if (authorID) {
             localStorage.setItem(`${AUTHOR_ID}`, authorID)
