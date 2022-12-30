@@ -1,0 +1,31 @@
+.welcome {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+}
+
+.welcomeHeaders {
+    margin: .25em 0;
+    color: #C08497;
+}
+
+.links {
+    padding: 0;
+    color: #6096BA;
+}
+
+.forms {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media screen and (max-width:600px) {
+    .forms {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

@@ -56,12 +56,12 @@ function Posts({ token }) {
                     <>
                         <NewPost
                             setPostChange={setPostChange} />
-                        <h2>View post to message a seller or manage your posts.</h2>
+                        <h3>View post to message a seller or manage your posts.</h3>
                     </>
 
                     :
                     <>
-                        <h2>In order to create a post or message a seller, please <Link to={'/home'}>sign-in or create an account!</Link></h2>
+                        <h3>In order to create a post or message a seller, please <Link to={'/home'}>sign-in or create an account!</Link></h3>
                     </>
             }
 

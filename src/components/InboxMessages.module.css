@@ -1,0 +1,25 @@
+.messageCard {
+    padding: 2px;
+    margin: .5em;
+    max-width: 100%;
+    width: auto;
+    border-bottom: solid 1px #C08497;
+}
+
+.messageLabels {
+    font-weight: 700;
+    color: #6096BA;
+}
+
+.messageHeaders {
+    margin-bottom: .25em;
+}
+
+.content {
+    margin: 0 .25em;
+    color: #C08497;
+}
+
+.contentCard {
+    margin-left: .25em;
+}

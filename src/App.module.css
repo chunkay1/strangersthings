@@ -1,0 +1,15 @@
+.navContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Raleway', 'Roboto', sans-serif;
+    /* border: 1px solid red; */
+}
+
+.main {
+    padding: 10px;
+}

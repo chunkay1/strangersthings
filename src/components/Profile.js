@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { myProfile } from "../api/accountRequests";
 import Messages from "./Messages";
 import { AUTHOR_ID } from "../api/accountRequests";
+import { Link } from "react-router-dom";
+import styles from "./Profile.module.css"
 
 function Profile(props) {
     const user = localStorage.getItem(`${AUTHOR_ID}`)
@@ -22,7 +24,21 @@ function Profile(props) {
 
     return (
         <>
-            <h1>Welcome back,</h1>
+
+            {
+                (!token)
+                    ?
+                    <div className={styles.container}>
+                        <h3 className={styles.header}>Please <Link to={'/home'}>log in or create a profile</Link> to view your messages</h3>
+                    </div>
+                    :
+                    <div>
+                        <Messages
+                            messages={messages}
+                            user={user} />
+                    </div>
+            }
+            {/* <h1>Welcome back,</h1>
             <span>{token}</span>
 
             <h2>Messages: </h2>
@@ -30,7 +46,7 @@ function Profile(props) {
 
             <Messages
                 messages={messages}
-                user={user} />
+                user={user} /> */}
         </>
     )
 };

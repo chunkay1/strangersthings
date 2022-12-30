@@ -20,7 +20,7 @@ function NewPost({ setPostChange }) {
 
     return (
         <>
-
+            <h3>Fill Out the Required Fields to Create a New Post</h3>
             <form
                 onSubmit={
                     (event) => {
