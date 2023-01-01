@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    /* border: 1px solid black; */
+}
+
+.mainHeader {
+    color: #C08497;
+}
+
+.image {
+    margin: 2em 0;
+}
+
+.subHeader {
+    color: #6096BA;
+    margin: 1em 0;
+}

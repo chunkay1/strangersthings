@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { setTargetValue } from "../constants/constants";
 import { newMessage } from "../api/messageRequests";
+import styles from "./MessageForm.module.css"
 
 function MessageForm({ postID, setMessageState }) {
     const [message, setMessage] = useState('')
 
 
     return (
-        <div>
+        <div className={styles.container}>
 
             <form
+                className={styles.form}
                 onSubmit={
                     (event) => {
                         event.preventDefault();
@@ -20,35 +22,38 @@ function MessageForm({ postID, setMessageState }) {
                         setMessageState(false)
                         //code or helper function that returns a success message on an interval. 
                     }}>
-                <span>
-                    <label
-                        for="newMessage">Your Message:</label>
 
-                    <br />
+                <div>
+                    <h3 className={styles.header}>Your Message</h3>
+                </div>
 
+                <div>
                     <input
-                        className="newMessage"
+                        className={styles.input}
                         type="text"
                         onChange={setTargetValue(setMessage)}
                         value={message}
                         required />
+                </div>
+                <button
+                    className={styles.sendButton}>Send</button>
 
-                    <button
-                        className="newMessage">Send Message</button>
-                </span>
             </form>
 
-            <button
-                className="cancel"
-                onClick={
-                    (event) => {
-                        return (
-                            setMessageState(false)
-                        )
-                    }
-                }
+            <div>
 
-            >cancel/go back</button>
+                <button
+                    className={styles.cancelButton}
+                    onClick={
+                        (event) => {
+                            return (
+                                setMessageState(false)
+                            )
+                        }
+                    }
+
+                >Cancel</button>
+            </div>
 
         </div>
     )

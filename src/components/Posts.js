@@ -4,6 +4,7 @@ import { getPosts } from "../api/postsRequests";
 import FeaturedPost from "./FeaturedPost";
 import NewPost from "./NewPost";
 import Postcard from "./Postcard";
+import styles from "./Posts.module.css"
 
 
 function Posts({ token }) {
@@ -48,69 +49,93 @@ function Posts({ token }) {
 
     return (
         <>
-
-            {
-                token
-
-                    ?
-                    <>
-                        <NewPost
-                            setPostChange={setPostChange} />
-                        <h3>View post to message a seller or manage your posts.</h3>
-                    </>
-
-                    :
-                    <>
-                        <h3>In order to create a post or message a seller, please <Link to={'/home'}>sign-in or create an account!</Link></h3>
-                    </>
-            }
+            <div className={styles.container}>
 
 
-            {
+                {
+                    (token && !featuredPost)
 
-                (!featuredPost)
+                        ?
+                        <>
+                            <div className={styles.newPost}>
+                                <NewPost
+                                    setPostChange={setPostChange} />
+                                <h3 className={styles.headers}>Click 'View Post' to message a seller or manage your posts.</h3>
+                            </div>
+                        </>
 
-                    ?
+                        :
+                        null
+                }
 
-                    <div>
-
-                        {
-                            posts.map(({ location, title, description, price, _id, author, isAuthor, willDeliver }) => {
-                                return (
+                {
+                    token
 
 
-                                    <Postcard
-                                        key={_id}
-                                        location={location}
-                                        title={title}
-                                        description={description}
-                                        price={price}
-                                        _id={_id}
-                                        author={author}
-                                        isAuthor={isAuthor}
-                                        willDeliver={willDeliver}
-                                        postState={postState}
-                                        getFeaturedPostProps={getFeaturedPostProps}
-                                        setPostChange={setPostChange}
+                        ?
 
-                                    />
+                        null
 
+
+                        :
+                        <>
+                            <div>
+                                <h3 className={styles.headers}>In order to create a post or message a seller, please <Link to={'/home'}>sign-in or create an account!</Link></h3>
+                            </div>
+                        </>
+                }
+
+
+                {
+
+                    (!featuredPost)
+
+                        ?
+
+
+                        <div className={styles.postcards}>
+                            {
+                                posts.map(({ location, title, description, price, _id, author, isAuthor, willDeliver }) => {
+                                    return (
+
+
+                                        <Postcard
+                                            key={_id}
+                                            location={location}
+                                            title={title}
+                                            description={description}
+                                            price={price}
+                                            _id={_id}
+                                            author={author}
+                                            isAuthor={isAuthor}
+                                            willDeliver={willDeliver}
+                                            postState={postState}
+                                            getFeaturedPostProps={getFeaturedPostProps}
+                                            setPostChange={setPostChange}
+
+                                        />
+
+                                    )
+                                }
                                 )
                             }
-                            )}
+                        </div>
 
-                    </div>
 
-                    :
+                        :
+                        <>
+                            <div className={styles.featuredPost}>
 
-                    <FeaturedPost
-                        postState={postState}
-                        featuredPostProps={featuredPostProps}
-                        setPostChange={setPostChange}
-                    />
 
-            }
-
+                                <FeaturedPost
+                                    postState={postState}
+                                    featuredPostProps={featuredPostProps}
+                                    setPostChange={setPostChange}
+                                />
+                            </div>
+                        </>
+                }
+            </div>
         </>
     )
 }

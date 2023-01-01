@@ -38,6 +38,11 @@ function App() {
       <main className={styles.main}>
         <Switch>
 
+          <Route exact path={'/'}>
+            <Home
+              token={token} />
+          </Route>
+
           <Route exact path={'/home'}>
             <Home
               token={token} />

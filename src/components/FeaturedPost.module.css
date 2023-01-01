@@ -1,0 +1,124 @@
+.container {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    padding: 10px 15px;
+    height: 55vh;
+    max-height: 100%;
+    width: 50vw;
+    max-width: 100%;
+    border-radius: 5%;
+    background-color: #ede7e3;
+}
+
+.header {
+    color: red;
+    margin: 5px;
+}
+
+.title {
+    font-weight: 600;
+    margin: 0;
+}
+
+.header,
+.title {
+    color: #82c0cc;
+}
+
+.content {
+    font-weight: 300;
+    color: #16697a
+}
+
+/* .button {
+    margin-right: 1em;
+    padding: 0.25em .75em;
+    box-sizing: content-box;
+    height: 1.5em;
+    border-radius: 7px;
+    background-color: #C08497;
+    color: #EDE7E3;
+    font-weight: 500;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+} */
+
+.buttons {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: row;
+
+
+
+
+
+
+}
+
+.closeButton,
+.msgButton,
+.editButton {
+
+    padding: 0.25em .75em;
+    box-sizing: content-box;
+    height: 1.5em;
+    border-radius: 7px;
+    background-color: #16697a;
+    color: #EDE7E3;
+    font-weight: 500;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.closeButton,
+.msgButton,
+.editButton,
+.deleteButton {
+    margin: 0 2em;
+}
+
+.closeButton:hover,
+.msgButton:hover,
+.editButton:hover {
+    cursor: pointer;
+    border-color: #16697A;
+    box-shadow: 0 0.5em 0.5em -0.4em #6096BA;
+    transform: translatey(-0.25em);
+    cursor: pointer;
+}
+
+.closeButton:active,
+.msgButton:active,
+.editButton:active {
+    background-color: #EDE7E3;
+    color: #16697A;
+    border: 1px solid #16697A;
+}
+
+.deleteButton {
+    padding: 0.25em .75em;
+    box-sizing: content-box;
+    height: 1.5em;
+    border-radius: 7px;
+    background-color: #c08497;
+    color: #f3eec3;
+    font-weight: 500;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+
+}
+
+.deleteButton:hover {
+    cursor: pointer;
+    border-color: #f3eec3;
+    box-shadow: 0 0.5em 0.5em -0.4em #82c0cc;
+    transform: translatey(-0.25em);
+    cursor: pointer;
+}
+
+.deleteButton:active {
+    background-color: #f3eec3;
+    color: #c08497;
+    border: .1px solid #c08497;
+}

@@ -1,45 +1,51 @@
 import { useState } from "react";
-import { AUTHOR_ID } from "../api/accountRequests";
-import { deletePost, STORAGE_KEY } from "../api/postsRequests";
+
+
 import EditForm from "./EditForm";
 import MessageForm from "./MessageForm";
 
-function FeaturedPost({ postState, featuredPostProps, setPostChange }) {
-    const userID = localStorage.getItem(`${AUTHOR_ID}`)
-    const token = localStorage.getItem(`${STORAGE_KEY}`)
+import FeaturedSingle from "./FeaturedSingle";
 
-    const { title, price, description, location, willDeliver, username, authID, postID } = featuredPostProps;
+function FeaturedPost({ postState, featuredPostProps, setPostChange }) {
+    // const userID = localStorage.getItem(`${AUTHOR_ID}`)
+    // const token = localStorage.getItem(`${STORAGE_KEY}`)
+
+    const { title, price, description, location, willDeliver, username, postID } = featuredPostProps;
 
     const [messageState, setMessageState] = useState(false);
     const [editState, setEditState] = useState(false);
 
     return (
         <div key={postID}>
+            {/* <div className={styles.container}>
 
-            <h3>{title}</h3>
+                <h3 className={styles.header}>{title}</h3>
 
-            <span>Seller: {username}</span>
-            <br />
+                <h4 className={styles.title}>Seller: <span className={styles.content}>{username}</span></h4>
 
-            <span>Price: {price}</span>
-            <br />
 
-            <span>Description: {description}</span>
-            <br />
-            <span>Location: {location}</span>
-            <br />
-            <span>Willing to Deliver?: {willDeliver}</span>
-            <br />
+                <h4 className={styles.title}>Price: <span className={styles.content}>{price}</span></h4>
+
+
+                <h4 className={styles.title}>Description: <span className={styles.content}>{description}</span></h4>
+
+                <h4 className={styles.title}>Location: <span className={styles.content}>{location}</span></h4>
+
+                <h4 className={styles.title}>Willing to Deliver?:<span className={styles.content}> {willDeliver}</span></h4> */}
+
 
             {
                 messageState
 
                     ?
-
-                    <MessageForm
-                        setMessageState={setMessageState}
-                        postID={postID}
-                    />
+                    <>
+                        <div>
+                            <MessageForm
+                                setMessageState={setMessageState}
+                                postID={postID}
+                            />
+                        </div>
+                    </>
 
                     :
 
@@ -65,72 +71,98 @@ function FeaturedPost({ postState, featuredPostProps, setPostChange }) {
                     />
 
                     :
-
                     null
+                // <FeaturedSingle
+                //     setMessageState={setMessageState}
+                //     setEditState={setEditState}
+                //     postState={postState}
+                //     featuredPostProps={featuredPostProps}
+                //     setPostChange={setPostChange}
+                // />
             }
 
             {
-                (token && (userID !== authID) && !messageState)
+                messageState || editState
 
                     ?
+                    null
+                    :
+                    <FeaturedSingle
+                        setMessageState={setMessageState}
+                        setEditState={setEditState}
+                        postState={postState}
+                        featuredPostProps={featuredPostProps}
+                        setPostChange={setPostChange}
+                    />
+
+            }
+
+            {/* <div className={styles.buttons}>
+                    {
+                        (token && (userID !== authID) && !messageState)
+
+                            ?
+
+                            <button
+                                className={styles.msgButton}
+                                onClick={
+                                    (event) => {
+                                        setMessageState(true);
+                                    }
+                                }
+                            >Send Seller a Message</button>
+
+                            :
+
+                            null
+                    }
+
+                    {
+                        (token && (userID === authID) && !editState)
+
+                            ?
+
+                            <>
+
+                                <button
+                                    className={styles.editButton}
+                                    onClick={
+                                        (event) => {
+                                            setEditState(true);
+                                        }
+                                    }
+                                >Edit</button>
+
+                                <br />
+
+                                <button
+                                    className={styles.deleteButton}
+                                    onClick={
+                                        (event) => {
+                                            //add an are you sure button before allowing you to actually delete the post.
+                                            deletePost(token, postID);
+                                            postState(false);
+                                            setPostChange(true);
+                                        }
+                                    }
+                                >Delete</button>
+
+                            </>
+                            :
+
+                            null
+                    }
 
                     <button
+                        className={styles.closeButton}
                         onClick={
                             (event) => {
-                                setMessageState(true);
+                                postState(false)
                             }
                         }
-                    >Send Seller a Message</button>
-
-                    :
-
-                    null
-            }
-
-            {
-                (token && (userID === authID) && !editState)
-
-                    ?
-
-                    <>
-
-                        <button
-                            onClick={
-                                (event) => {
-                                    //add an are you sure button before allowing you to actually delete the post.
-                                    deletePost(token, postID);
-                                    postState(false);
-                                    setPostChange(true);
-                                }
-                            }
-                        >Delete</button>
-
-                        <br />
-
-                        <button
-                            onClick={
-                                (event) => {
-                                    setEditState(true);
-                                }
-                            }
-                        >Edit</button>
-
-                        <br />
-
-                    </>
-                    :
-
-                    null
-            }
-
-            <button
-                onClick={
-                    (event) => {
-                        postState(false)
-                    }
-                }
-            > Close </button>
-
+                    > Close </button>
+                </div>
+            </div > */}
         </div >
     )
 }

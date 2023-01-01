@@ -2,6 +2,7 @@ import { useState } from "react";
 import { setTargetValue } from "../constants/constants";
 import { editPost } from "../api/postsRequests";
 import { STORAGE_KEY } from "../api/accountRequests";
+import styles from "./EditForm.module.css"
 
 function EditForm({ postID, setEditState, title, username, price, description, location, postState, setPostChange }) {
     const [editedTitle, setEditedTitle] = useState(`${title}`)
@@ -13,9 +14,10 @@ function EditForm({ postID, setEditState, title, username, price, description, l
 
 
     return (
-        <div>
+        <div className={styles.container}>
 
             <form
+                className={styles.form}
                 onSubmit={
                     (event) => {
                         event.preventDefault();
@@ -29,85 +31,88 @@ function EditForm({ postID, setEditState, title, username, price, description, l
                         postState(false);
                         //code or helper function that returns a success message on an interval. 
                     }}>
-                <span>
-                    <label
-                        for="editTitle">Edit Title:</label>
+                <div className={styles.inputs}>
+                    <div className={styles.input}>
+                        <span>
+                            <label
+                                for="editTitle">Edit Title:</label>
 
-                    &nbsp;
+                            &nbsp;
 
-                    <input
-                        className="editTitle"
-                        type="text"
-                        onChange={setTargetValue(setEditedTitle)}
-                        value={editedTitle}
-                        required />
-                </span>
+                            <input
+                                className={styles.textbox}
+                                type="text"
+                                onChange={setTargetValue(setEditedTitle)}
+                                value={editedTitle}
+                                required />
+                        </span>
+                    </div>
 
-                <br />
+                    <div className={styles.input}>
+                        <span>
+                            <label
+                                for="editTitle">Edit Price:</label>
 
-                <span>
-                    <label
-                        for="editTitle">Edit Price:</label>
+                            &nbsp;
 
-                    &nbsp;
+                            <input
+                                className={styles.textbox}
+                                type="text"
+                                onChange={setTargetValue(setEditedPrice)}
+                                value={editedPrice}
+                                required />
+                        </span>
+                    </div>
 
-                    <input
-                        className="editPrice"
-                        type="text"
-                        onChange={setTargetValue(setEditedPrice)}
-                        value={editedPrice}
-                        required />
-                </span>
+                    <div className={styles.input}>
+                        <span>
+                            <label
+                                for="editTitle">Edit Description:</label>
 
-                <br />
+                            &nbsp;
 
-                <span>
-                    <label
-                        for="editTitle">Edit Description:</label>
+                            <input
+                                className={styles.textbox}
+                                type="text"
+                                onChange={setTargetValue(setEditedDescription)}
+                                value={editedDescription}
+                                required />
+                        </span>
+                    </div>
 
-                    &nbsp;
+                    <div className={styles.input}>
+                        <span>
+                            <label
+                                for="editTitle">Edit Location:</label>
 
-                    <input
-                        className="editDescription"
-                        type="text"
-                        onChange={setTargetValue(setEditedDescription)}
-                        value={editedDescription}
-                        required />
-                </span>
+                            &nbsp;
 
-                <br />
+                            <input
+                                className={styles.textbox}
+                                type="text"
+                                onChange={setTargetValue(setEditedLocation)}
+                                value={editedLocation}
+                                required />
+                        </span>
+                    </div>
+                </div>
 
-                <span>
-                    <label
-                        for="editTitle">Edit Location:</label>
-
-                    &nbsp;
-
-                    <input
-                        className="editLocation"
-                        type="text"
-                        onChange={setTargetValue(setEditedLocation)}
-                        value={editedLocation}
-                        required />
-                </span>
-
-                <br />
 
                 {/* delivery checkbox goes here. */}
 
-                <br />
+
 
 
 
 
                 <span>
                     <button
-                        className="editPost">Submit Changes</button>
+                        className={styles.buttons}>Submit Changes</button>
                 </span>
             </form>
 
             <button
-                className="cancel"
+                className={styles.buttons}
                 onClick={
                     (event) => {
                         return (
@@ -116,7 +121,8 @@ function EditForm({ postID, setEditState, title, username, price, description, l
                     }
                 }
 
-            >cancel/go back</button>
+            >Cancel</button>
+
 
         </div>
     )
