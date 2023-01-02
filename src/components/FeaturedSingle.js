@@ -1,16 +1,12 @@
-// import { useState } from "react";
 import { AUTHOR_ID } from "../api/accountRequests";
 import { deletePost, STORAGE_KEY } from "../api/postsRequests";
-// import EditForm from "./EditForm";
-// import MessageForm from "./MessageForm";
 import styles from "./FeaturedSingle.module.css"
 
 function FeaturedSingle({ postState, featuredPostProps, setPostChange, setMessageState, setEditState }) {
-    const userID = localStorage.getItem(`${AUTHOR_ID}`)
-    const token = localStorage.getItem(`${STORAGE_KEY}`)
+    const userID = localStorage.getItem(`${AUTHOR_ID}`);
+    const token = localStorage.getItem(`${STORAGE_KEY}`);
 
     const { title, price, description, location, willDeliver, username, authID, postID } = featuredPostProps;
-
 
     return (
         <div key={postID}>
@@ -28,8 +24,21 @@ function FeaturedSingle({ postState, featuredPostProps, setPostChange, setMessag
 
                 <h4 className={styles.title}>Location: <span className={styles.content}>{location}</span></h4>
 
-                <h4 className={styles.title}>Willing to Deliver?:<span className={styles.content}> {willDeliver}</span></h4>
+                <h4 className={styles.title}>Willing to Deliver?:
 
+                    {
+                        willDeliver
+
+                            ?
+
+                            <span className={styles.content}> Yes</span>
+
+                            :
+
+                            <span className={styles.content}> No</span>
+                    }
+
+                </h4>
 
                 <div className={styles.buttons}>
                     {
@@ -73,7 +82,6 @@ function FeaturedSingle({ postState, featuredPostProps, setPostChange, setMessag
                                     className={styles.deleteButton}
                                     onClick={
                                         (event) => {
-                                            //add an are you sure button before allowing you to actually delete the post.
                                             deletePost(token, postID);
                                             postState(false);
                                             setPostChange(true);

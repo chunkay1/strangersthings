@@ -1,5 +1,4 @@
 .postcards {
-    /* border: 1px solid black; */
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: wrap-reverse;
@@ -21,4 +20,13 @@
 
 .headers {
     color: #16697a;
+}
+
+@media screen and (max-width: 500px) {
+    .postcards {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-around;
+        align-items: center;
+    }
 }

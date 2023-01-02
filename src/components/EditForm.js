@@ -4,14 +4,18 @@ import { editPost } from "../api/postsRequests";
 import { STORAGE_KEY } from "../api/accountRequests";
 import styles from "./EditForm.module.css"
 
-function EditForm({ postID, setEditState, title, username, price, description, location, postState, setPostChange }) {
-    const [editedTitle, setEditedTitle] = useState(`${title}`)
-    const [editedPrice, setEditedPrice] = useState(`${price}`)
-    const [editedDescription, setEditedDescription] = useState(`${description}`)
-    const [editedLocation, setEditedLocation] = useState(`${location}`)
+function EditForm({ postID, setEditState, title, username, willDeliver, price, description, location, postState, setPostChange }) {
+    const [editedTitle, setEditedTitle] = useState(`${title}`);
+    const [editedPrice, setEditedPrice] = useState(`${price}`);
+    const [editedDescription, setEditedDescription] = useState(`${description}`);
+    const [editedLocation, setEditedLocation] = useState(`${location}`);
+    const [editedDelivery, setEditedDelivery] = useState(`${willDeliver}`);
 
-    const token = localStorage.getItem(`${STORAGE_KEY}`)
+    const token = localStorage.getItem(`${STORAGE_KEY}`);
 
+    const handleChange = () => {
+        setEditedDelivery(!editedDelivery);
+    }
 
     return (
         <div className={styles.container}>
@@ -21,7 +25,7 @@ function EditForm({ postID, setEditState, title, username, price, description, l
                 onSubmit={
                     (event) => {
                         event.preventDefault();
-                        editPost({ editedTitle, editedPrice, editedDescription, editedLocation, token, postID })
+                        editPost({ editedTitle, editedPrice, editedDescription, editedLocation, token, postID, editedDelivery })
                         setEditedTitle('');
                         setEditedPrice('');
                         setEditedDescription('');
@@ -29,7 +33,6 @@ function EditForm({ postID, setEditState, title, username, price, description, l
                         setPostChange(true);
                         setEditState(false);
                         postState(false);
-                        //code or helper function that returns a success message on an interval. 
                     }}>
                 <div className={styles.inputs}>
                     <div className={styles.input}>
@@ -95,15 +98,19 @@ function EditForm({ postID, setEditState, title, username, price, description, l
                                 required />
                         </span>
                     </div>
+
+                    <div>
+                        <span className={styles.input}>
+                            <label for="delivery">Willing to Deliver?</label>
+                            &nbsp;
+                            <input
+                                className="delivery"
+                                onChange={handleChange}
+                                type="checkbox" />
+                        </span>
+                    </div>
+
                 </div>
-
-
-                {/* delivery checkbox goes here. */}
-
-
-
-
-
 
                 <span>
                     <button
@@ -120,13 +127,10 @@ function EditForm({ postID, setEditState, title, username, price, description, l
                         )
                     }
                 }
-
             >Cancel</button>
-
 
         </div>
     )
-
 }
 
 export default EditForm;

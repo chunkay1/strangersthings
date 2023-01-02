@@ -24,7 +24,7 @@ export async function newPost(props) {
             description: props.description,
             price: props.price,
             location: props.location,
-            willDeliver: props.willDeliver,
+            willDeliver: props.delivery,
         }
     });
 
@@ -42,7 +42,6 @@ export async function newPost(props) {
         )
 
     } catch (error) {
-        console.log(error);
         console.error(error)
     }
 }
@@ -60,7 +59,6 @@ export async function deletePost(token, _id) {
             }
         )
     } catch (error) {
-        console.log(error);
         console.error(error)
     }
 
@@ -75,7 +73,7 @@ export async function editPost(props) {
             description: props.editedDescription,
             price: props.editedPrice,
             location: props.editedLocation,
-            willDeliver: props.editedWillDeliver,
+            willDeliver: props.editedDelivery,
         }
     });
     try {
@@ -91,7 +89,6 @@ export async function editPost(props) {
             },
         );
     } catch (error) {
-        console.log(error);
         console.error(error);
     }
 }

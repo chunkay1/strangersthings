@@ -30,7 +30,6 @@ export async function createAccount(props) {
         }
 
     } catch (error) {
-        console.log('Failed to Register')
         console.error(error)
     }
 
@@ -69,8 +68,8 @@ export async function logIn(props) {
         )
 
     } catch (error) {
-        console.log('Failed to Log In')
         console.error(error)
+        window.alert(error)
     }
 }
 
@@ -104,7 +103,6 @@ export async function myProfile(props) {
         )
 
     } catch (error) {
-        console.log('failed to load profile');
         console.error(error);
     }
 

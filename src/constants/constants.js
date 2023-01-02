@@ -12,7 +12,6 @@ export const setTargetValue = (callback) => {
 
 export const getPostsAsync = async () => {
     const posts = await getPosts();
-    console.log(posts);
 
     return (
         posts

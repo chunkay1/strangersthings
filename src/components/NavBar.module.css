@@ -1,16 +1,15 @@
+* {
+    border: none;
+}
+
 body {
     margin: 0;
     padding: 0;
-
 }
 
 .body {
     border-bottom: 2px solid #B0D0D3;
     padding: .2em;
-}
-
-* {
-    border: none;
 }
 
 .header {
@@ -30,30 +29,7 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* margin-left: 1em; */
-
 }
-
-@media screen and (max-width: 500px) {
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .button {
-        margin: .5em;
-        padding: 0.25em .75em;
-        box-sizing: content-box;
-        height: 1.5em;
-        border-radius: 7px;
-    }
-}
-
-
 
 .list {
     display: flex;
@@ -74,13 +50,9 @@ a {
 }
 
 a:hover {
-    /* text-decoration: underline; */
-    /* box-shadow: 0 2px 5px -2px #6096BA; */
     color: #C08497;
     text-decoration: underline solid #F7E3AF;
     border: none;
-    /* border-bottom: 1px solid white; */
-    /* margin-bottom: .2em; */
     transition: color 0.25s, text-decoration 0.25s;
 }
 
@@ -99,7 +71,6 @@ a:hover {
 .button:hover {
     cursor: pointer;
     border-color: #16697A;
-    /* color: white; */
     box-shadow: 0 0.5em 0.5em -0.4em #6096BA;
     transform: translatey(-0.25em);
     cursor: pointer;
@@ -108,4 +79,24 @@ a:hover {
 .button:active {
     background-color: #EDE7E3;
     color: #C08497;
+}
+
+@media screen and (max-width: 500px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .button {
+        margin: .5em;
+        padding: 0.25em .75em;
+        box-sizing: content-box;
+        height: 1.5em;
+        border-radius: 7px;
+    }
 }

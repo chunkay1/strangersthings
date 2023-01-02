@@ -37,14 +37,10 @@ function Posts({ token }) {
     useEffect(() => {
         const getPostsAsync = async () => {
             const posts = await getPosts();
-
-            console.log(posts);
             setPosts(posts)
         }
         getPostsAsync();
         setPostChange(false)
-        console.log('success');
-        console.log(postChange)
     }, [postChange]);
 
     return (
@@ -56,6 +52,7 @@ function Posts({ token }) {
                     (token && !featuredPost)
 
                         ?
+
                         <>
                             <div className={styles.newPost}>
                                 <NewPost
@@ -65,6 +62,7 @@ function Posts({ token }) {
                         </>
 
                         :
+
                         null
                 }
 
@@ -76,8 +74,8 @@ function Posts({ token }) {
 
                         null
 
-
                         :
+
                         <>
                             <div>
                                 <h3 className={styles.headers}>In order to create a post or message a seller, please <Link to={'/home'}>sign-in or create an account!</Link></h3>
@@ -91,7 +89,6 @@ function Posts({ token }) {
                     (!featuredPost)
 
                         ?
-
 
                         <div className={styles.postcards}>
                             {
@@ -121,8 +118,8 @@ function Posts({ token }) {
                             }
                         </div>
 
-
                         :
+
                         <>
                             <div className={styles.featuredPost}>
 

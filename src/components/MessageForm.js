@@ -4,8 +4,7 @@ import { newMessage } from "../api/messageRequests";
 import styles from "./MessageForm.module.css"
 
 function MessageForm({ postID, setMessageState }) {
-    const [message, setMessage] = useState('')
-
+    const [message, setMessage] = useState('');
 
     return (
         <div className={styles.container}>
@@ -15,12 +14,9 @@ function MessageForm({ postID, setMessageState }) {
                 onSubmit={
                     (event) => {
                         event.preventDefault();
-                        console.log(message)
-                        console.log(postID)
                         newMessage(message, postID)
                         setMessage('')
                         setMessageState(false)
-                        //code or helper function that returns a success message on an interval. 
                     }}>
 
                 <div>
@@ -51,7 +47,6 @@ function MessageForm({ postID, setMessageState }) {
                             )
                         }
                     }
-
                 >Cancel</button>
             </div>
 

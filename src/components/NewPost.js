@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { newPost } from "../api/postsRequests";
 import { STORAGE_KEY } from "../api/postsRequests";
-import { setTargetValue, getPostsAsync } from "../constants/constants";
+import { setTargetValue } from "../constants/constants";
 import styles from "./NewPost.module.css"
 
 
@@ -10,8 +10,9 @@ function NewPost({ setPostChange }) {
     const [price, setPrice] = useState('')
     const [description, setDescription] = useState('')
     const [location, setLocation] = useState('')
-    // const [willDeliver, setDeliverStatus] = useState(null)
+    const [delivery, setDelivery] = useState(false);
     const [token, setToken] = useState('')
+
 
     useEffect(() => {
         const storageToken = localStorage.getItem(`${STORAGE_KEY}`);
@@ -19,10 +20,13 @@ function NewPost({ setPostChange }) {
         setToken(storageToken)
     }, [])
 
+    const handleChange = () => {
+        setDelivery(!delivery);
+    }
+
     return (
         <>
             <div className={styles.container}>
-
 
                 <h3 className={styles.header}>Fill Out the Required Fields to Create a New Post</h3>
                 <form
@@ -30,75 +34,82 @@ function NewPost({ setPostChange }) {
                     onSubmit={
                         (event) => {
                             event.preventDefault();
-                            newPost({ title, price, description, location, token });
-                            console.log(getPostsAsync());
+                            newPost({ title, price, description, location, token, delivery });
                             setTitle('');
                             setPrice('');
                             setDescription('');
                             setLocation('');
+                            setDelivery(false)
                             setPostChange(true);
                         }
                     }
                 >
 
                     <div className={styles.inputs}>
-                        <span>
-                            <label for="title">Title</label>
-                            &nbsp;
-                            <input
-                                className={styles.textbox}
-                                onChange={setTargetValue(setTitle)}
-                                value={title}
-                                required />
-                        </span>
 
-                        <br />
+                        <div>
+                            <span className={styles.input}>
+                                <label for="title">Title</label>
+                                &nbsp;
+                                <input
+                                    className={styles.textbox}
+                                    onChange={setTargetValue(setTitle)}
+                                    value={title}
+                                    required />
+                            </span>
+                        </div>
 
-                        <span>
-                            <label for="price">Price</label>
-                            &nbsp;
-                            <input
-                                className={styles.textbox}
-                                onChange={setTargetValue(setPrice)}
-                                value={price}
-                                required />
-                        </span>
+                        <div>
+                            <span className={styles.input}>
+                                <label for="price">Price</label>
+                                &nbsp;
+                                <input
+                                    className={styles.textbox}
+                                    onChange={setTargetValue(setPrice)}
+                                    value={price}
+                                    required />
+                            </span>
+                        </div>
 
-                        <br />
+                        <div>
+                            <span className={styles.input}>
+                                <label for="description">Description</label>
+                                &nbsp;
+                                <input
+                                    className={styles.textbox}
+                                    onChange={setTargetValue(setDescription)}
+                                    value={description}
+                                    required />
+                            </span>
+                        </div>
 
-                        <span>
-                            <label for="description">Description</label>
-                            &nbsp;
-                            <input
-                                className={styles.textbox}
-                                onChange={setTargetValue(setDescription)}
-                                value={description}
-                                required />
-                        </span>
+                        <div>
+                            <span className={styles.input}>
+                                <label for="location">Location</label>
+                                &nbsp;
+                                <input
+                                    className={styles.textbox}
+                                    onChange={setTargetValue(setLocation)}
+                                    value={location} />
+                            </span>
+                        </div>
 
-                        <br />
+                        <div>
+                            <span className={styles.input}>
+                                <label for="delivery">Willing to Deliver?</label>
+                                &nbsp;
+                                <input
 
-                        <span>
-                            <label for="location">Location</label>
-                            &nbsp;
-                            <input
-                                className={styles.textbox}
-                                onChange={setTargetValue(setLocation)}
-                                value={location} />
-                        </span>
+                                    className="delivery"
+                                    onChange={handleChange}
 
-                        {/* <span>
-                    <label for="delivery">Willing to Deliver?</label>
-                    &nbsp;
-                    <input
-                        className="delivery"
-                        value={setTargetValue(setDeliverStatus)}
-                        type="checkbox" />
-                </span> */}
+                                    type="checkbox" />
+                            </span>
+                        </div>
+
+
+                        <button className={styles.button}>Post</button>
                     </div>
-
-
-                    <button className={styles.button}>Post</button>
 
                 </form>
             </div>

@@ -3,12 +3,10 @@
 body {
     margin: 0;
     padding: 0;
-    /* background: rgb(243, 238, 195); */
     background: radial-gradient(circle, rgba(243, 238, 195, 0.5107085070356268) 73%, rgba(245, 206, 196, 0.5079073865874475) 88%);
 }
 
 * {
     box-sizing: border-box;
     font-family: 'Raleway', 'Roboto', sans-serif;
-    /* border: 1px solid red; */
 }

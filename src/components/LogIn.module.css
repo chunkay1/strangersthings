@@ -12,7 +12,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
     width: 100%;
     max-width: 40vw;
 }
@@ -27,10 +26,8 @@
 .submit {
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
     justify-content: center;
     padding: 5px;
-    /* text-align: center; */
 }
 
 .button {
@@ -44,7 +41,6 @@
     color: #EDE7E3;
     font-weight: 700;
     transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s, color 0.25s;
-
 }
 
 .button:hover {

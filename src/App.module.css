@@ -1,20 +1,17 @@
 * {
     box-sizing: border-box;
     font-family: 'Raleway', 'Roboto', sans-serif;
-    /* border: 1px solid red; */
 }
 
 .navContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    /* background-color: radial-gradient(circle, rgba(243, 238, 195, 1) 73%, rgba(245, 206, 196, 1) 88%); */
     overflow: hidden;
     position: sticky !important;
     top: 0;
     height: 17vh;
     width: 100%;
-
 }
 
 

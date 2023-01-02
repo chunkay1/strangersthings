@@ -41,8 +41,6 @@ function Postcard({ _id, title, price, description, location, author, isAuthor, 
 
                         :
 
-
-
                         <button
                             className={styles.button}
                             onClick={
@@ -61,7 +59,6 @@ function Postcard({ _id, title, price, description, location, author, isAuthor, 
                         > View Post</button>
                 }
 
-                {/* View Post to Edit and Delete */}
             </div >
         </div>
     )

@@ -27,8 +27,6 @@ export async function newMessage(message, postID) {
             json
         )
     } catch (error) {
-        console.log('error sending message');
         console.error(error)
-
     }
 };

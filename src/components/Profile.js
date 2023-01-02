@@ -20,8 +20,6 @@ function Profile(props) {
         getMessagesAsync();
     }, [token]);
 
-
-
     return (
         <>
 
@@ -38,15 +36,6 @@ function Profile(props) {
                             user={user} />
                     </div>
             }
-            {/* <h1>Welcome back,</h1>
-            <span>{token}</span>
-
-            <h2>Messages: </h2>
-
-
-            <Messages
-                messages={messages}
-                user={user} /> */}
         </>
     )
 };

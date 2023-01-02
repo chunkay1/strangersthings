@@ -34,34 +34,14 @@
     color: #16697a
 }
 
-/* .button {
-    margin-right: 1em;
-    padding: 0.25em .75em;
-    box-sizing: content-box;
-    height: 1.5em;
-    border-radius: 7px;
-    background-color: #C08497;
-    color: #EDE7E3;
-    font-weight: 500;
-    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-} */
-
 .buttons {
-    /* border: 1px solid black; */
     display: flex;
     flex-direction: row;
-
-
-
-
-
-
 }
 
 .closeButton,
 .msgButton,
 .editButton {
-
     padding: 0.25em .75em;
     box-sizing: content-box;
     height: 1.5em;
@@ -106,7 +86,6 @@
     color: #f3eec3;
     font-weight: 500;
     transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-
 }
 
 .deleteButton:hover {
